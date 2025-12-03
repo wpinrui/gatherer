@@ -6,7 +6,7 @@
 
 **Current Phase:** Phase 1 - Core Infrastructure
 **Active Branch:** main
-**Latest Commit:** feat: add Gin HTTP server with health endpoint
+**Latest Commit:** feat: add file upload endpoint (PR #3 pending)
 
 ---
 
@@ -15,7 +15,7 @@
 **Priority:** File upload infrastructure
 
 **Suggested Next Task:**
-- [ ] File upload endpoint (multipart/form-data)
+- [ ] File storage service (save to filesystem with metadata)
 
 **Estimated Effort:** ~30 minutes, ~100 lines
 
@@ -26,7 +26,6 @@
 ### Not Started
 - [ ] Set up PostgreSQL database locally
 - [ ] Create initial database schema and migrations
-- [ ] File upload endpoint (multipart/form-data)
 - [ ] File storage service (save to filesystem)
 - [ ] Database connection and basic Item CRUD
 - [ ] React app initialization with TypeScript and Vite
@@ -36,7 +35,7 @@
 - [ ] Application launcher script (start backend + open browser)
 
 ### In Progress
-None
+- [ ] File upload endpoint (multipart/form-data) - PR #3 pending review
 
 ### Completed
 - [x] Initialize Go module and project structure - PR #1
