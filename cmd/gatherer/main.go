@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/wpinrui/gatherer/internal/handlers"
 )
 
 func main() {
@@ -15,6 +16,8 @@ func main() {
 			"status": "ok",
 		})
 	})
+
+	r.POST("/upload", handlers.UploadFile)
 
 	log.Println("Gatherer - Starting on :8080")
 	if err := r.Run(":8080"); err != nil {
