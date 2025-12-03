@@ -3,19 +3,24 @@ package handlers
 import (
 	"fmt"
 	"net/http"
-	"os"
-	"path/filepath"
-	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
+	"github.com/wpinrui/gatherer/internal/storage"
 )
 
-const (
-	UploadDir     = "./uploads"
-	MaxUploadSize = 50 << 20 // 50 MB
-)
+const MaxUploadSize = 50 << 20 // 50 MB
 
+// UploadHandler handles file upload requests.
+type UploadHandler struct {
+	storage storage.FileStorage
+}
+
+// NewUploadHandler creates a new UploadHandler with the given storage.
+func NewUploadHandler(s storage.FileStorage) *UploadHandler {
+	return &UploadHandler{storage: s}
+}
+
+// UploadResponse is the API response for file uploads.
 type UploadResponse struct {
 	ID        string `json:"id"`
 	Filename  string `json:"filename"`
@@ -24,13 +29,8 @@ type UploadResponse struct {
 	CreatedAt string `json:"created_at"`
 }
 
-func init() {
-	if err := os.MkdirAll(UploadDir, 0755); err != nil {
-		panic(fmt.Sprintf("failed to create upload directory: %v", err))
-	}
-}
-
-func UploadFile(c *gin.Context) {
+// Handle processes file upload requests.
+func (h *UploadHandler) Handle(c *gin.Context) {
 	file, err := c.FormFile("file")
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
@@ -46,12 +46,17 @@ func UploadFile(c *gin.Context) {
 		return
 	}
 
-	id := uuid.New().String()
-	ext := filepath.Ext(file.Filename)
-	storedName := id + ext
-	destPath := filepath.Join(UploadDir, storedName)
+	src, err := file.Open()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "failed to read file",
+		})
+		return
+	}
+	defer src.Close()
 
-	if err := c.SaveUploadedFile(file, destPath); err != nil {
+	metadata, err := h.storage.Save(file.Filename, src, file.Size)
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "failed to save file",
 		})
@@ -59,11 +64,11 @@ func UploadFile(c *gin.Context) {
 	}
 
 	response := UploadResponse{
-		ID:        id,
-		Filename:  file.Filename,
-		Size:      file.Size,
-		Path:      destPath,
-		CreatedAt: time.Now().UTC().Format(time.RFC3339),
+		ID:        metadata.ID,
+		Filename:  metadata.OriginalName,
+		Size:      metadata.Size,
+		Path:      metadata.Path,
+		CreatedAt: metadata.CreatedAt.Format("2006-01-02T15:04:05Z07:00"),
 	}
 
 	c.JSON(http.StatusCreated, response)
