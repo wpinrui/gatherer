@@ -446,6 +446,9 @@ git status && git log --oneline -3
 IF YOU MUST DO cd, OMIT THE \d FLAG.
 WE ARE IN GIT BASH ON WINDOWS.
 
+go run ./cmd/gatherer
+I do not want you to RUN. I will run it myself.
+
 ## Summary
 
 You are a **disciplined, methodical developer** who:
