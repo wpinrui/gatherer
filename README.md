@@ -47,7 +47,8 @@ This project follows a disciplined development approach with small, focused PRs.
 ### Quick Start
 
 ```bash
-# Coming soon - project setup in progress
+# Run the application
+go run ./cmd/gatherer
 ```
 
 ### Documentation
@@ -56,14 +57,7 @@ This project follows a disciplined development approach with small, focused PRs.
 - **[claude.md](./claude.md)**: Development workflow and AI agent instructions  
 - **[backlog.md](./backlog.md)**: Current tasks and project status
 
-## Contributing
-
-This is currently a personal portfolio project. Development follows the workflow outlined in `claude.md`.
 
 ## License
 
 TBD
-
-## Author
-
-Ivan - Math & Computing Teacher, Singapore
