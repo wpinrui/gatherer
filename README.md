@@ -2,23 +2,23 @@
 
 **Intelligent Information Aggregator for Managing Information Overload**
 
-Gatherer is a desktop application that helps students and professionals capture, process, and query information from multiple sources (emails, PDFs, screenshots, audio recordings, web links) in one unified system with intelligent search and task management.
+Gatherer is a self-contained Electron desktop application that helps students and professionals capture, process, and query information from multiple sources (PDFs, screenshots, audio recordings, web links) in one unified system with intelligent search and task management.
 
 ## The Problem
 
 Information comes at you from everywhere:
-- Emails with important attachments
 - PDFs scattered across microsites
 - Screenshots from video calls with QR codes
 - Audio recordings from meetings
 - Links buried in chat messages
+- Files saved in random folders
 
 Current solutions force you to manually organize everything, create duplicates across systems, and make it hard to find what you need when you need it.
 
 ## The Solution
 
 Gatherer provides:
-- **Universal Capture**: Add information via file upload, email forwarding, or browser extension
+- **Easy Capture**: Drag-and-drop files, paste from clipboard, or drop files in a watched folder
 - **Intelligent Processing**: Automatic text extraction, OCR, transcription, and summarization
 - **Semantic Search**: Find anything with natural language queries
 - **Task Extraction**: Automatically identify deadlines and action items
@@ -27,12 +27,12 @@ Gatherer provides:
 
 ## Tech Stack
 
+- **Desktop Shell**: Electron (spawns Docker + Go backend)
 - **Backend**: Go with Gin framework
-- **Database**: PostgreSQL with pgvector for semantic search
+- **Database**: PostgreSQL with pgvector (Docker-managed)
 - **Frontend**: React with TypeScript
 - **AI/ML**: OpenAI API (embeddings, GPT-4, Whisper)
 - **OCR**: Tesseract
-- **Deployment**: Self-hosted desktop application
 
 ## Project Status
 

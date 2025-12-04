@@ -28,7 +28,6 @@
 - [ ] Basic file upload UI component
 - [ ] Items list view component
 - [ ] Simple file viewer (PDF.js for PDF, img tag for images)
-- [ ] Application launcher script (start backend + open browser)
 
 ### In Progress
 - [ ] PostgreSQL setup + database connection - PR #5 pending review
@@ -77,9 +76,9 @@
 
 See `proposal.md` for detailed breakdown of:
 - Phase 4: Task Extraction
-- Phase 5: Browser Extension
+- Phase 5: Electron Shell
 - Phase 6: Audio Processing
-- Phase 7: Email Integration
+- Phase 7: Clipboard & Folder Watching
 - Phase 8: Intelligence & Learning
 - Phase 9: Advanced Features
 - Phase 10: Optimization & Deployment
@@ -100,10 +99,14 @@ None yet
 
 ## Questions / Decisions Needed
 
-1. **Database Setup:** Local PostgreSQL or embedded (e.g., using Docker)?
-2. **Frontend Routing:** React Router or Next.js?
-3. **Desktop Launcher:** Simple shell script or Electron wrapper?
-4. **API Keys:** How should OpenAI API key be configured? (Environment variable, config file?)
+1. **Frontend Routing:** React Router or Next.js?
+2. **API Keys:** How should OpenAI API key be configured? (Environment variable, config file?)
+
+## Decisions Made
+
+1. **Database Setup:** Docker-managed PostgreSQL (Electron spawns docker-compose)
+2. **Desktop Launcher:** Electron app (spawns Docker + Go backend)
+3. **Capture Methods:** File upload, clipboard paste, folder watching (no browser extension, no email)
 
 ---
 
