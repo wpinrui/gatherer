@@ -1,0 +1,72 @@
+.items-list {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.items-list h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.items-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.items-list .item {
+  padding: 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.items-list .item:last-child {
+  border-bottom: none;
+}
+
+.items-list .item-name {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  word-break: break-word;
+}
+
+.items-list .item-meta {
+  font-size: 0.75rem;
+  color: #666;
+  display: flex;
+  gap: 1rem;
+}
+
+.items-list .loading,
+.items-list .empty {
+  color: #666;
+  font-style: italic;
+}
+
+.items-list .error {
+  color: #991b1b;
+  background: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.items-list button {
+  padding: 0.5rem 1rem;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.items-list button:hover {
+  background: #e2e8f0;
+}
+
+.items-list .refresh-btn {
+  margin-top: 0.5rem;
+}

@@ -32,6 +32,7 @@ func main() {
 	}
 
 	uploadHandler := handlers.NewUploadHandler(fileStorage)
+	itemsHandler := handlers.NewItemsHandler(itemRepo)
 
 	r := gin.Default()
 
@@ -42,6 +43,7 @@ func main() {
 	})
 
 	r.POST("/upload", uploadHandler.Handle)
+	r.GET("/items", itemsHandler.List)
 
 	log.Println("Gatherer - Starting on :8080")
 	if err := r.Run(":8080"); err != nil {
