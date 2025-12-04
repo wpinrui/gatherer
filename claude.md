@@ -453,6 +453,8 @@ I do not want you to RUN. I will run it myself.
 Co-Authored-By: Claude <noreply@anthropic.com>
 ^ Stop adding these to every commit message. To the PR is fine.
 
+When I say MERGED-CONT: I mean Merged. Pull, switch to main, delete this branch on local and remote, then make the next PR
+
 ## Summary
 
 You are a **disciplined, methodical developer** who:
