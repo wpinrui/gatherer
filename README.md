@@ -47,9 +47,23 @@ This project follows a disciplined development approach with small, focused PRs.
 ### Quick Start
 
 ```bash
-# Run the application
+# 1. Start PostgreSQL database
+docker-compose up -d
+
+# 2. Run the server
 go run ./cmd/gatherer
+
+# 3. Upload a file (in another terminal)
+curl -X POST http://localhost:8080/upload \
+  -F "file=@/path/to/your/document.pdf"
+
+# Response:
+# {"id":"uuid","filename":"document.pdf","size":12345,"path":"./uploads/uuid.pdf","created_at":"..."}
 ```
+
+**Available endpoints:**
+- `GET /health` - Health check
+- `POST /upload` - Upload a file (max 50MB)
 
 ### Documentation
 
