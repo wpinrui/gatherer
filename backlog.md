@@ -6,18 +6,18 @@
 
 **Current Phase:** Phase 1 - Core Infrastructure
 **Active Branch:** main
-**Latest Commit:** feat: add file upload endpoint (PR #3 pending)
+**Latest Commit:** feat: add file storage service with interface (PR #4 pending)
 
 ---
 
 ## Next Immediate Task
 
-**Priority:** File upload infrastructure
+**Priority:** Database setup
 
 **Suggested Next Task:**
-- [ ] File storage service (save to filesystem with metadata)
+- [ ] Set up PostgreSQL database locally (Docker or native)
 
-**Estimated Effort:** ~30 minutes, ~100 lines
+**Estimated Effort:** ~30 minutes, configuration + basic schema
 
 ---
 
@@ -26,7 +26,6 @@
 ### Not Started
 - [ ] Set up PostgreSQL database locally
 - [ ] Create initial database schema and migrations
-- [ ] File storage service (save to filesystem)
 - [ ] Database connection and basic Item CRUD
 - [ ] React app initialization with TypeScript and Vite
 - [ ] Basic file upload UI component
@@ -35,11 +34,12 @@
 - [ ] Application launcher script (start backend + open browser)
 
 ### In Progress
-- [ ] File upload endpoint (multipart/form-data) - PR #3 pending review
+- [ ] File storage service - PR #4 pending review
 
 ### Completed
 - [x] Initialize Go module and project structure - PR #1
 - [x] Basic Gin HTTP server with health check endpoint - PR #2
+- [x] File upload endpoint (multipart/form-data) - PR #3
 
 ---
 
