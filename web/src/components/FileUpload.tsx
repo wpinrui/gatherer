@@ -46,12 +46,21 @@ export function FileUpload() {
         body: formData,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Upload failed');
+      const text = await response.text();
+      if (!text) {
+        throw new Error('Server returned empty response. Is the backend running?');
       }
 
-      const data: UploadResponse = await response.json();
+      let data: UploadResponse;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error('Invalid response from server');
+      }
+
+      if (!response.ok) {
+        throw new Error((data as { error?: string }).error || 'Upload failed');
+      }
       setStatus('success');
       setMessage(`Uploaded: ${data.filename} (${formatBytes(data.size)})`);
 
