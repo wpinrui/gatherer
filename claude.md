@@ -454,6 +454,7 @@ Co-Authored-By: Claude <noreply@anthropic.com>
 ^ Stop adding these to every commit message. To the PR is fine.
 
 When I say MERGED-CONT: I mean Merged. Pull, switch to main, delete this branch on local and remote, then make the next PR
+When I say PR-REVIEWER-MODE: I mean there is a PR open for this current branch, and I need you to find bugs, make Uncle Bob code quality refactors, push and EXPLAIN TO ME CLEARLY what the issue was and what the solution was
 
 ## Summary
 
