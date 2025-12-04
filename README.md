@@ -46,24 +46,24 @@ This project follows a disciplined development approach with small, focused PRs.
 
 ### Quick Start
 
-```bash
-# 1. Start PostgreSQL database
-docker-compose up -d
+```cmd
+# Start PostgreSQL and run the server
+dev.bat
 
-# 2. Run the server
-go run ./cmd/gatherer
+# In another terminal, upload a file
+curl -X POST http://localhost:8080/upload -F "file=@path\to\document.pdf"
 
-# 3. Upload a file (in another terminal)
-curl -X POST http://localhost:8080/upload \
-  -F "file=@/path/to/your/document.pdf"
-
-# Response:
-# {"id":"uuid","filename":"document.pdf","size":12345,"path":"./uploads/uuid.pdf","created_at":"..."}
+# Query the database
+psql.bat
 ```
 
 **Available endpoints:**
 - `GET /health` - Health check
 - `POST /upload` - Upload a file (max 50MB)
+
+**Scripts:**
+- `dev.bat` - Start PostgreSQL + run server
+- `psql.bat` - Open PostgreSQL shell
 
 ### Documentation
 
