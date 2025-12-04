@@ -7,23 +7,157 @@ Gatherer is an intelligent information aggregation and timeline management syste
 ## Problem Statement
 
 Students and professionals receive critical information through fragmented channels:
-- Emails with attachments and embedded information
-- PDFs on various microsites
-- Screenshots from video calls containing QR codes or important visuals
-- Audio recordings from meetings
-- Web links scattered across platforms
+- PDFs scattered across learning portals and microsites
+- Screenshots from video calls containing important visuals
+- Photos of whiteboards and slides taken on phones
+- Audio recordings from meetings and lectures
+- Quick notes jotted down without context
+- Web links saved "for later" and forgotten
+- Files saved in random folders across the system
 
-Current solutions require manual organization, duplicate information exists across sources, and retrieving information chronologically or by relevance is difficult.
+Current solutions require manual organization, force users to tag and categorize everything themselves, and make it nearly impossible to find information when you need it. The cognitive overhead of organizing information often exceeds the effort of just doing the work.
 
 ## Solution
 
-A desktop-first application that:
-1. Accepts information from multiple sources with minimal friction
-2. Intelligently processes and indexes all content types
-3. Provides semantic and temporal querying
-4. Extracts and manages tasks and deadlines automatically
-5. Learns from user feedback to improve time estimations
-6. Eliminates duplicate information intelligently
+A **smart knowledge base** that builds itself. Gatherer is not just storage with search—it's an intelligent system that:
+
+1. **Captures with zero friction**: Paste from clipboard, drop files in a folder, drag-and-drop—content flows in effortlessly
+2. **Understands context automatically**: Analyzes content to infer module codes, topics, and relationships without manual tagging
+3. **Prompts only when necessary**: When context is ambiguous, asks for minimal input (one click to confirm a suggestion)
+4. **Connects related information**: Links items by topic, time, source, and semantic similarity
+5. **Extracts actionable intelligence**: Identifies tasks, deadlines, and priorities from content
+6. **Learns and improves**: Gets smarter about context inference based on user corrections
+
+The core principle: **Gatherer does the organizing so you don't have to.**
+
+---
+
+## User Scenario: A Day in the Life
+
+*Meet Alex, a university student taking CS2030S (Programming Methodology II), CS2040S (Data Structures), and IS1108 (Digital Ethics). Here's how Gatherer fits into a typical day.*
+
+### Morning: Online Lecture (CS2030S)
+
+**9:00 AM** — Alex joins a Zoom lecture. The professor shares slides about Java Streams.
+
+- Alex takes a screenshot of a complex diagram → **Win+Shift+S, then Ctrl+V into Gatherer**
+- A toast notification appears: *"Screenshot added. CS2030S?"* (Gatherer recognized "Stream" and recent CS2030S activity)
+- Alex clicks **✓** to confirm. Done in 1 second.
+
+**9:45 AM** — Professor mentions "Assignment 3 due Friday 11:59 PM, covers Streams and Optional."
+
+- Alex screenshots the slide → pastes into Gatherer
+- Gatherer auto-extracts: *"Task detected: Assignment 3, deadline Fri 11:59 PM, topic: Streams, Optional"*
+- Task appears in Alex's task list, linked to the screenshot.
+
+**10:00 AM** — Lecture ends. Alex downloads the PDF slides from LumiNUS.
+
+- Alex saves PDF to `~/Downloads/Gatherer/` (watched folder)
+- Gatherer auto-imports, detects "CS2030S" in the filename and content
+- Processes: extracts text, generates summary, links to this morning's screenshots
+- Alex never touches the file again—it's searchable and connected.
+
+### Midday: Face-to-Face Lecture (CS2040S)
+
+**12:00 PM** — Alex attends a lecture on graph algorithms. Takes photos of the whiteboard on phone.
+
+- Later, Alex transfers photos to laptop → drops into watched folder
+- Gatherer OCRs the whiteboard images, detects "BFS", "DFS", "CS2040S" from content
+- Auto-tags and links to previous CS2040S materials.
+
+**12:30 PM** — Alex jots quick notes in Notepad during lecture:
+```
+- BFS uses queue
+- DFS uses stack
+- time complexity O(V+E)
+```
+- Saves as `notes.txt` to watched folder
+- Gatherer imports, but context is unclear (no module code in text)
+- **Prompt appears**: *"What's this about?"* with suggestions: `CS2040S` (recent), `CS2030S`, `Other`
+- Alex clicks `CS2040S`. Gatherer links it to today's photos and previous graph materials.
+
+### Afternoon: Break Between Classes
+
+**2:00 PM** — Alex has 30 minutes before tutorial. Opens Gatherer.
+
+**Dashboard shows:**
+- "3 items from this morning need review" (the screenshots)
+- "CS2030S Assignment 3 due in 4 days" (auto-extracted task)
+- "You added 5 items about graphs today" (temporal clustering)
+
+**Alex searches**: *"what's the difference between BFS and DFS?"*
+- Gatherer returns: today's whiteboard photo, last week's lecture PDF, a linked YouTube video Alex saved last month
+- All from different times, all semantically connected.
+
+### Late Afternoon: Tutorial (IS1108)
+
+**4:00 PM** — Tutorial for Digital Ethics. Tutor discusses the essay assignment.
+
+- Tutor writes on whiteboard: "Essay due Week 10. Topic: AI bias in hiring. 2000 words. Use at least 5 academic sources."
+- Alex photos the whiteboard → transfers to watched folder
+- Gatherer OCRs, extracts task: *"Essay, Week 10, AI bias in hiring, 2000 words, 5 sources"*
+- Auto-tagged `IS1108` (detected from "ethics" and recent IS1108 pattern)
+
+**4:30 PM** — Tutor shares useful links verbally. Alex copies them one by one:
+- Copies URL → **Ctrl+V** in Gatherer → Gatherer fetches page, archives, extracts content
+- Repeat 3 times. All auto-linked to IS1108 essay task.
+
+### Evening: Working on Assignment
+
+**7:00 PM** — Alex starts CS2030S Assignment 3.
+
+**Searches**: *"CS2030S streams examples"*
+- Results: this morning's screenshots, lecture PDF, tutorial worksheet from 2 weeks ago, a Stack Overflow link Alex saved
+
+**While working**, Alex finds a useful blog post:
+- Copies URL → Ctrl+V → Gatherer archives it
+- Gatherer suggests: *"Link to CS2030S Assignment 3?"* (based on current activity)
+- Alex confirms. The resource is now connected to the assignment.
+
+**8:00 PM** — Alex edits the assignment PDF with annotations (using external PDF editor).
+- Gatherer detects the file changed in watched folder
+- Re-processes, extracts new annotations separately from original content
+- Annotations searchable: *"my notes on assignment 3"* finds them.
+
+### Night: Planning Tomorrow
+
+**10:00 PM** — Alex opens Gatherer's **Timeline View**.
+
+**Sees:**
+- Tomorrow: CS2040S tutorial (needs to review graphs)
+- Friday: CS2030S Assignment 3 due
+- Week 10: IS1108 Essay due
+
+**Tasks View shows:**
+- "Review BFS/DFS for tutorial" (auto-suggested based on tomorrow's schedule)
+- "Complete CS2030S Assignment 3" — estimated 4 hours (based on past assignments)
+- "Start IS1108 essay research" — 5 sources needed
+
+Alex marks "Review BFS/DFS" as priority for tomorrow morning.
+
+### The Intelligence in Action
+
+Throughout the day, Gatherer demonstrated:
+
+| Feature | Example |
+|---------|---------|
+| **Context inference** | Recognized "CS2030S" from content without manual tagging |
+| **Minimal prompts** | Only asked for context when truly ambiguous (the quick notes) |
+| **Smart suggestions** | Offered likely tags based on recent activity and content |
+| **Temporal awareness** | Grouped morning items together, knew "today's" context |
+| **Task extraction** | Found deadlines in screenshots and created tasks automatically |
+| **File change detection** | Noticed PDF annotations and re-processed |
+| **Semantic linking** | Connected BFS/DFS content across photos, notes, PDFs, and videos |
+| **One-click capture** | Clipboard paste with single confirmation click |
+
+**What Alex never did:**
+- Manually create folders or organize files
+- Type out task details or deadlines
+- Tag items with categories
+- Remember where anything was saved
+- Worry about duplicates or versions
+
+---
 
 ## Architecture
 
@@ -81,7 +215,7 @@ A desktop-first application that:
 Each ingested item goes through a processing pipeline:
 
 ```
-Ingestion → Storage → Processing → Embedding → Indexing
+Ingestion → Storage → Context Inference → Processing → Embedding → Linking
 ```
 
 **Processing Steps:**
@@ -90,6 +224,7 @@ Ingestion → Storage → Processing → Embedding → Indexing
    - Save original file to organized directory structure
    - Generate unique identifier (UUID)
    - Create database record with metadata
+   - Record timestamp and source (clipboard, folder, drag-drop)
 
 2. **Content Extraction**
    - PDF: Extract text using pdfcpu/unidoc
@@ -97,23 +232,41 @@ Ingestion → Storage → Processing → Embedding → Indexing
    - Audio: Transcribe via Whisper API
    - Web: Extract main content, strip ads/navigation
    - DOCX: Extract text and formatting
+   - Detect file changes: If file was seen before, extract only new/changed content (e.g., annotations)
 
-3. **Intelligence Extraction** (via LLM)
+3. **Context Inference** (the intelligence layer)
+
+   This is the core of Gatherer's smart organization:
+
+   - **Module/Topic Detection**: Scan content for module codes (CS2030S), course names, topic keywords
+   - **Temporal Context**: What was the user doing in the last 30 minutes? Group with recent items
+   - **Pattern Matching**: "Last 5 items were tagged CS2040S, this one probably is too"
+   - **Confidence Scoring**: High confidence → auto-tag silently. Low confidence → prompt user
+
+   **Prompt Strategy:**
+   - Only prompt when confidence < 70%
+   - Show top 2-3 suggestions as clickable buttons
+   - "Other" option opens minimal text input
+   - Learn from corrections to improve future inference
+
+4. **Intelligence Extraction** (via LLM)
    - Summarization: Generate concise summary
    - Task Extraction: Identify action items, deadlines, requirements
-   - Date Parsing: Extract all mentioned dates and deadlines
+   - Date Parsing: Extract all mentioned dates and deadlines (convert "Friday" to actual date)
    - Entity Recognition: People, places, topics
-   - Categorization: Automatic tagging based on content
+   - Requirement Extraction: "2000 words", "5 sources", specific deliverables
 
-4. **Embedding Generation**
+5. **Embedding Generation**
    - Split content into chunks (500-1000 tokens)
    - Generate embeddings via OpenAI API
    - Store in pgvector for semantic search
 
-5. **Deduplication**
+6. **Linking & Deduplication**
    - Compare embeddings with existing content
-   - Flag similar items (>0.85 similarity)
-   - Suggest keeping best version (prefer: direct PDF > screenshot > email forward)
+   - Flag duplicates (>0.90 similarity) → suggest keeping best version
+   - Find related items (0.70-0.90 similarity) → create soft links
+   - Link to active tasks if content is related (e.g., resource linked to assignment)
+   - Temporal clustering: Items added within 15 minutes likely belong together
 
 #### 4. Database Schema
 
@@ -124,13 +277,37 @@ Ingestion → Storage → Processing → Embedding → Indexing
 items (
   id UUID PRIMARY KEY,
   title TEXT,
-  source_type TEXT, -- email, upload, extension, url
-  content_type TEXT, -- pdf, image, audio, web
+  source_type TEXT, -- clipboard, folder, upload, url
+  content_type TEXT, -- pdf, image, audio, web, text
   original_filename TEXT,
   file_path TEXT,
+  file_hash TEXT, -- for detecting changes
   ingested_at TIMESTAMP,
   status TEXT, -- pending, processing, completed, error
+  context_id UUID REFERENCES contexts(id), -- linked context (module, project, etc.)
+  context_confidence FLOAT, -- how confident was the auto-inference
   metadata JSONB
+)
+
+-- Contexts: Modules, projects, categories
+contexts (
+  id UUID PRIMARY KEY,
+  name TEXT, -- "CS2030S", "IS1108 Essay", "Hall Application"
+  context_type TEXT, -- module, project, personal, work
+  keywords TEXT[], -- terms that suggest this context
+  color TEXT,
+  created_at TIMESTAMP,
+  last_used_at TIMESTAMP -- for suggesting recent contexts
+)
+
+-- Context inference learning
+context_corrections (
+  id UUID PRIMARY KEY,
+  item_id UUID REFERENCES items(id),
+  suggested_context_id UUID REFERENCES contexts(id),
+  actual_context_id UUID REFERENCES contexts(id),
+  corrected_at TIMESTAMP
+  -- Used to improve inference: "When I suggested X but user chose Y, what was different?"
 )
 
 -- Processed content
@@ -139,6 +316,7 @@ content (
   item_id UUID REFERENCES items(id),
   extracted_text TEXT,
   summary TEXT,
+  is_annotation BOOLEAN DEFAULT FALSE, -- true if this is user-added content (annotations, highlights)
   processed_at TIMESTAMP
 )
 
@@ -178,14 +356,22 @@ item_tags (
   PRIMARY KEY (item_id, tag_id)
 )
 
--- Duplicates tracking
-duplicates (
+-- Item relationships (semantic links, temporal clusters)
+item_links (
   id UUID PRIMARY KEY,
   item_id_1 UUID REFERENCES items(id),
   item_id_2 UUID REFERENCES items(id),
+  link_type TEXT, -- 'similar', 'temporal', 'task_resource', 'duplicate'
   similarity_score FLOAT,
-  preferred_item_id UUID, -- user choice
   created_at TIMESTAMP
+)
+
+-- Task resources (items linked to tasks)
+task_resources (
+  task_id UUID REFERENCES tasks(id),
+  item_id UUID REFERENCES items(id),
+  added_at TIMESTAMP,
+  PRIMARY KEY (task_id, item_id)
 )
 
 -- User feedback for time estimation learning
@@ -214,10 +400,11 @@ time_feedback (
    - Date range queries
 
 3. **Filtered Search**
-   - By source type (email, PDF, screenshot)
+   - By context (CS2030S, IS1108 Essay, etc.)
+   - By source type (clipboard, folder, upload)
    - By content type (documents, audio, images)
-   - By tags or categories
-   - By completion status
+   - By time range ("today", "this week", "last month")
+   - By linked task or deadline
 
 4. **Smart Queries**
    - "What do I need to prepare for tomorrow?"
@@ -260,9 +447,11 @@ Vector Search + SQL Filters → Ranking → Results
 
 1. **Dashboard**
    - Upcoming deadlines widget
-   - Recent items
-   - Quick search bar
-   - Suggested actions ("Review these 3 items for tomorrow")
+   - Recent items grouped by context
+   - Quick search bar (always visible)
+   - Pending context confirmations ("3 items need tagging")
+   - Suggested actions ("Review these items for tomorrow's tutorial")
+   - Activity summary ("You added 12 items about CS2040S today")
 
 2. **Timeline View**
    - Chronological display of all items
@@ -278,11 +467,12 @@ Vector Search + SQL Filters → Ranking → Results
 
 4. **Item Detail View**
    - Full content display (PDF viewer, audio player, image viewer)
-   - Extracted summary
-   - Associated tasks
-   - Related items (based on similarity)
-   - Source information
-   - Edit metadata, add notes
+   - Extracted summary and key points
+   - Context badge (CS2030S) with one-click change
+   - Associated tasks (auto-linked or manually added)
+   - Related items (semantically similar, same context, same time)
+   - Annotations section (if file was modified externally)
+   - Source information and processing history
 
 5. **Tasks View**
    - Kanban board or list view
@@ -298,35 +488,65 @@ Vector Search + SQL Filters → Ranking → Results
 
 #### 8. Clipboard Integration
 
-**Capabilities:**
-- Monitor clipboard for new content (opt-in)
-- Manual paste via Ctrl+V or button in app
-- Support all clipboard content types:
-  - Images (screenshots, copied images)
-  - Text (plain text, rich text)
-  - URLs (automatically fetch and archive)
-  - Files (copied from Explorer)
-- Automatic content type detection
-- Duplicate detection before import
+**Always-On Monitoring:**
+- Clipboard is monitored continuously while Gatherer runs
+- When content is detected, a subtle indicator shows in system tray/app
+- User can add content with a single hotkey (e.g., Ctrl+Shift+G) or click
+
+**Quick Capture Flow:**
+```
+User copies something → Gatherer detects content →
+Shows toast: "Add to Gatherer? [CS2030S] [CS2040S] [Other]" →
+User clicks one button → Done
+```
+
+**Supported Content Types:**
+- Images: Screenshots (Win+Shift+S), copied images from web/apps
+- Text: Plain text, rich text, code snippets
+- URLs: Automatically fetch and archive the page
+- Files: Files copied from Explorer (Ctrl+C on files)
+
+**Smart Context Suggestions:**
+- Suggest context based on clipboard content analysis
+- Suggest recent contexts ("You've been adding CS2030S items")
+- Learn from corrections to improve suggestions
 
 **Implementation:**
-- Electron's clipboard API for cross-platform support
-- File handling via Node.js fs module
-- Image processing via sharp or native APIs
+- Electron's clipboard API for cross-platform monitoring
+- Polling interval: 500ms (configurable)
+- Deduplication: Don't prompt for same content twice
+- Background processing: Don't block user, process after capture
 
 #### 9. Folder Watching
 
-**Capabilities:**
-- User-configurable watched folder (e.g., `~/Gatherer/inbox/`)
-- Automatic import when files are added
-- Support for all file types in Supported Formats
-- Option to move or copy files after import
-- Configurable polling interval or native fs events
+**Watched Folder Setup:**
+- User configures one or more watched folders (e.g., `~/Downloads/Gatherer/`)
+- Can be any folder—Downloads, Desktop, OneDrive sync folder, etc.
+- Great for phone photo sync (photos land in folder → auto-import)
+
+**Auto-Import Flow:**
+```
+File appears in folder → Gatherer detects →
+Analyze content for context → High confidence? Auto-tag silently →
+Low confidence? Queue for user prompt next time app is focused
+```
+
+**File Change Detection:**
+- Track file hashes to detect modifications
+- If a previously-imported file changes (e.g., PDF annotated), re-process
+- Extract only new content (annotations, highlights)
+- Don't create duplicate entries—update existing item
+
+**Context Inference for Folder Items:**
+- Analyze filename: `CS2030S_Lecture5.pdf` → tag CS2030S
+- Analyze content: OCR finds "Data Structures" → suggest CS2040S
+- Temporal grouping: 5 photos added in 2 minutes → same context
 
 **Implementation:**
 - Node.js `chokidar` for cross-platform file watching
-- Queue new files for processing pipeline
-- Handle rapid file additions gracefully
+- File hash comparison (MD5/SHA256) for change detection
+- Queue system for batch processing (don't overwhelm during bulk imports)
+- Notification when items need context confirmation
 
 ## Implementation Phases
 
