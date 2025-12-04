@@ -14,3 +14,5 @@ if errorlevel 1 (
 
 echo PostgreSQL ready. Starting server...
 go run ./cmd/gatherer
+
+pause
