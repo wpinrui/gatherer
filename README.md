@@ -46,10 +46,24 @@ This project follows a disciplined development approach with small, focused PRs.
 
 ### Quick Start
 
-```bash
-# Run the application
-go run ./cmd/gatherer
+```cmd
+# Start PostgreSQL and run the server
+dev.bat
+
+# In another terminal, upload a file
+curl -X POST http://localhost:8080/upload -F "file=@path\to\document.pdf"
+
+# Query the database
+psql.bat
 ```
+
+**Available endpoints:**
+- `GET /health` - Health check
+- `POST /upload` - Upload a file (max 50MB)
+
+**Scripts:**
+- `dev.bat` - Start PostgreSQL + run server
+- `psql.bat` - Open PostgreSQL shell
 
 ### Documentation
 

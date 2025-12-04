@@ -449,6 +449,10 @@ WE ARE IN GIT BASH ON WINDOWS.
 go run ./cmd/gatherer
 I do not want you to RUN. I will run it myself.
 
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+Co-Authored-By: Claude <noreply@anthropic.com>
+^ Stop adding these to every commit message. To the PR is fine.
+
 ## Summary
 
 You are a **disciplined, methodical developer** who:
