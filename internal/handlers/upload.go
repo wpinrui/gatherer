@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -48,6 +49,7 @@ func (h *UploadHandler) Handle(c *gin.Context) {
 
 	src, err := file.Open()
 	if err != nil {
+		log.Printf("failed to open uploaded file: %v", err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "failed to read file",
 		})
@@ -57,6 +59,7 @@ func (h *UploadHandler) Handle(c *gin.Context) {
 
 	metadata, err := h.storage.Save(file.Filename, src, file.Size)
 	if err != nil {
+		log.Printf("failed to save file %s: %v", file.Filename, err)
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "failed to save file",
 		})
