@@ -6,26 +6,24 @@
 
 **Current Phase:** Phase 1 - Core Infrastructure
 **Active Branch:** main
-**Latest Commit:** feat: add file storage service with interface (PR #4 pending)
+**Latest Commit:** feat: add PostgreSQL setup with docker-compose (PR #5 pending)
 
 ---
 
 ## Next Immediate Task
 
-**Priority:** Database setup
+**Priority:** Database connection
 
 **Suggested Next Task:**
-- [ ] Set up PostgreSQL database locally (Docker or native)
+- [ ] Database connection and basic Item repository
 
-**Estimated Effort:** ~30 minutes, configuration + basic schema
+**Estimated Effort:** ~30 minutes, ~100 lines
 
 ---
 
 ## Phase 1: Core Infrastructure (Current)
 
 ### Not Started
-- [ ] Set up PostgreSQL database locally
-- [ ] Create initial database schema and migrations
 - [ ] Database connection and basic Item CRUD
 - [ ] React app initialization with TypeScript and Vite
 - [ ] Basic file upload UI component
@@ -34,12 +32,13 @@
 - [ ] Application launcher script (start backend + open browser)
 
 ### In Progress
-- [ ] File storage service - PR #4 pending review
+- [ ] PostgreSQL setup with docker-compose - PR #5 pending review
 
 ### Completed
 - [x] Initialize Go module and project structure - PR #1
 - [x] Basic Gin HTTP server with health check endpoint - PR #2
 - [x] File upload endpoint (multipart/form-data) - PR #3
+- [x] File storage service with interface - PR #4
 
 ---
 
