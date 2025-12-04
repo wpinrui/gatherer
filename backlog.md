@@ -6,25 +6,24 @@
 
 **Current Phase:** Phase 1 - Core Infrastructure
 **Active Branch:** main
-**Latest Commit:** feat: add PostgreSQL setup with docker-compose (PR #5 pending)
+**Latest Commit:** feat: add database connection and item repository (PR #5 pending)
 
 ---
 
 ## Next Immediate Task
 
-**Priority:** Database connection
+**Priority:** Frontend setup
 
 **Suggested Next Task:**
-- [ ] Database connection and basic Item repository
+- [ ] React app initialization with TypeScript and Vite
 
-**Estimated Effort:** ~30 minutes, ~100 lines
+**Estimated Effort:** ~30 minutes, scaffolding + basic config
 
 ---
 
 ## Phase 1: Core Infrastructure (Current)
 
 ### Not Started
-- [ ] Database connection and basic Item CRUD
 - [ ] React app initialization with TypeScript and Vite
 - [ ] Basic file upload UI component
 - [ ] Items list view component
@@ -32,7 +31,7 @@
 - [ ] Application launcher script (start backend + open browser)
 
 ### In Progress
-- [ ] PostgreSQL setup with docker-compose - PR #5 pending review
+- [ ] PostgreSQL setup + database connection - PR #5 pending review
 
 ### Completed
 - [x] Initialize Go module and project structure - PR #1
