@@ -12,6 +12,9 @@ if errorlevel 1 (
     goto wait
 )
 
+echo Killing any existing process on port 8080...
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr :8080 ^| findstr LISTENING') do taskkill /F /PID %%a >nul 2>&1
+
 echo PostgreSQL ready. Starting server...
 go run ./cmd/gatherer
 
