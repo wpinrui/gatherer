@@ -5,8 +5,8 @@
 ## Project Status
 
 **Current Phase:** Phase 1 - Core Infrastructure
-**Active Branch:** feat/react-vite-init
-**Latest Commit:** feat: add React frontend with Vite and TypeScript (PR pending)
+**Active Branch:** feat/file-upload-ui
+**Latest Commit:** feat: add file upload UI component (PR pending)
 
 ---
 
@@ -15,23 +15,23 @@
 **Priority:** Frontend UI components
 
 **Suggested Next Task:**
-- [ ] Basic file upload UI component
+- [ ] Items list view component
 
-**Estimated Effort:** ~1 hour, form + API integration
+**Estimated Effort:** ~1 hour, list component + API call
 
 ---
 
 ## Phase 1: Core Infrastructure (Current)
 
 ### Not Started
-- [ ] Basic file upload UI component
 - [ ] Items list view component
 - [ ] Simple file viewer (PDF.js for PDF, img tag for images)
 
 ### In Progress
-- [ ] React app initialization with TypeScript and Vite - PR pending
+- [ ] Basic file upload UI component - PR pending
 
 ### Completed
+- [x] React app initialization with TypeScript and Vite - PR #6
 - [x] PostgreSQL setup + database connection - PR #5
 - [x] Initialize Go module and project structure - PR #1
 - [x] Basic Gin HTTP server with health check endpoint - PR #2
