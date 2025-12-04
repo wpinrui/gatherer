@@ -5,8 +5,8 @@
 ## Project Status
 
 **Current Phase:** Phase 1 - Core Infrastructure
-**Active Branch:** feat/file-upload-ui
-**Latest Commit:** feat: add file upload UI component (PR pending)
+**Active Branch:** feat/items-list
+**Latest Commit:** feat: add items list view component (PR pending)
 
 ---
 
@@ -15,22 +15,22 @@
 **Priority:** Frontend UI components
 
 **Suggested Next Task:**
-- [ ] Items list view component
+- [ ] Simple file viewer (PDF.js for PDF, img tag for images)
 
-**Estimated Effort:** ~1 hour, list component + API call
+**Estimated Effort:** ~1-2 hours, PDF.js integration + image handling
 
 ---
 
 ## Phase 1: Core Infrastructure (Current)
 
 ### Not Started
-- [ ] Items list view component
 - [ ] Simple file viewer (PDF.js for PDF, img tag for images)
 
 ### In Progress
-- [ ] Basic file upload UI component - PR pending
+- [ ] Items list view component - PR pending
 
 ### Completed
+- [x] Basic file upload UI component - PR #7
 - [x] React app initialization with TypeScript and Vite - PR #6
 - [x] PostgreSQL setup + database connection - PR #5
 - [x] Initialize Go module and project structure - PR #1
