@@ -51,7 +51,9 @@
 - [ ] Create processing worker
 - [ ] Add Tesseract OCR integration for images
 - [ ] Integrate OpenAI API for summarization
-- [ ] Store extracted content in database
+- [ ] **Context inference**: Module/topic detection from content
+- [ ] **Context inference**: Confidence scoring and prompt strategy
+- [ ] Store extracted content in database (with context_id)
 - [ ] Display processing status in UI
 - [ ] Show extracted text and summaries
 
@@ -107,6 +109,7 @@ None yet
 1. **Database Setup:** Docker-managed PostgreSQL (Electron spawns docker-compose)
 2. **Desktop Launcher:** Electron app (spawns Docker + Go backend)
 3. **Capture Methods:** File upload, clipboard paste, folder watching (no browser extension, no email)
+4. **Core Vision:** Smart knowledge base that organizes itself—context inference, minimal user prompts, automatic linking
 
 ---
 
