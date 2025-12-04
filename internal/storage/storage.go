@@ -115,8 +115,13 @@ func (s *LocalStorage) Get(id string) (*FileMetadata, error) {
 	}, nil
 }
 
-// Delete removes a file by ID.
+// Delete removes a file by ID from both filesystem and database.
 func (s *LocalStorage) Delete(id string) error {
+	uid, err := uuid.Parse(id)
+	if err != nil {
+		return fmt.Errorf("invalid id: %w", err)
+	}
+
 	metadata, err := s.Get(id)
 	if err != nil {
 		return err
@@ -124,6 +129,10 @@ func (s *LocalStorage) Delete(id string) error {
 
 	if err := os.Remove(metadata.Path); err != nil && !os.IsNotExist(err) {
 		return fmt.Errorf("failed to delete file: %w", err)
+	}
+
+	if err := s.itemRepo.Delete(uid); err != nil {
+		return fmt.Errorf("failed to delete metadata: %w", err)
 	}
 
 	return nil
