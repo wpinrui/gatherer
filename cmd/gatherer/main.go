@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/wpinrui/gatherer/internal/database"
 	"github.com/wpinrui/gatherer/internal/handlers"
 	"github.com/wpinrui/gatherer/internal/storage"
 )
@@ -12,7 +13,20 @@ import (
 const uploadDir = "./uploads"
 
 func main() {
-	fileStorage, err := storage.NewLocalStorage(uploadDir)
+	db, err := database.Connect(database.Config{
+		Host:     "localhost",
+		Port:     5432,
+		User:     "gatherer",
+		Password: "gatherer",
+		DBName:   "gatherer",
+	})
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
+	}
+	defer db.Close()
+
+	itemRepo := database.NewItemRepository(db)
+	fileStorage, err := storage.NewLocalStorage(uploadDir, itemRepo)
 	if err != nil {
 		log.Fatal("Failed to initialize storage:", err)
 	}
