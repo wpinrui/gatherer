@@ -23,6 +23,7 @@ type Item struct {
 type ItemRepository interface {
 	Create(item *Item) error
 	GetByID(id uuid.UUID) (*Item, error)
+	Delete(id uuid.UUID) error
 	List() ([]*Item, error)
 }
 
@@ -68,6 +69,22 @@ func (r *PostgresItemRepository) GetByID(id uuid.UUID) (*Item, error) {
 		return nil, fmt.Errorf("failed to get item: %w", err)
 	}
 	return item, nil
+}
+
+func (r *PostgresItemRepository) Delete(id uuid.UUID) error {
+	query := `DELETE FROM items WHERE id = $1`
+	result, err := r.db.Exec(query, id)
+	if err != nil {
+		return fmt.Errorf("failed to delete item: %w", err)
+	}
+	rows, err := result.RowsAffected()
+	if err != nil {
+		return fmt.Errorf("failed to check deletion: %w", err)
+	}
+	if rows == 0 {
+		return fmt.Errorf("item not found: %s", id)
+	}
+	return nil
 }
 
 func (r *PostgresItemRepository) List() ([]*Item, error) {
