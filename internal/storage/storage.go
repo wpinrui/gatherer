@@ -32,11 +32,11 @@ type FileStorage interface {
 // LocalStorage implements FileStorage using filesystem + database.
 type LocalStorage struct {
 	baseDir  string
-	itemRepo *database.ItemRepository
+	itemRepo database.ItemRepository
 }
 
 // NewLocalStorage creates a new LocalStorage instance.
-func NewLocalStorage(baseDir string, itemRepo *database.ItemRepository) (*LocalStorage, error) {
+func NewLocalStorage(baseDir string, itemRepo database.ItemRepository) (*LocalStorage, error) {
 	if err := os.MkdirAll(baseDir, 0755); err != nil {
 		return nil, fmt.Errorf("failed to create storage directory: %w", err)
 	}

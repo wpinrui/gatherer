@@ -25,7 +25,7 @@ func main() {
 	}
 	defer db.Close()
 
-	itemRepo := database.NewItemRepository(db)
+	itemRepo := database.NewPostgresItemRepository(db)
 	fileStorage, err := storage.NewLocalStorage(uploadDir, itemRepo)
 	if err != nil {
 		log.Fatal("Failed to initialize storage:", err)

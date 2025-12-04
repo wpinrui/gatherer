@@ -19,15 +19,24 @@ type Item struct {
 	UpdatedAt    time.Time
 }
 
-type ItemRepository struct {
+// ItemRepository defines the interface for item persistence operations.
+type ItemRepository interface {
+	Create(item *Item) error
+	GetByID(id uuid.UUID) (*Item, error)
+	List() ([]*Item, error)
+}
+
+// PostgresItemRepository implements ItemRepository using PostgreSQL.
+type PostgresItemRepository struct {
 	db *sql.DB
 }
 
-func NewItemRepository(db *sql.DB) *ItemRepository {
-	return &ItemRepository{db: db}
+// NewPostgresItemRepository creates a new PostgreSQL-backed item repository.
+func NewPostgresItemRepository(db *sql.DB) *PostgresItemRepository {
+	return &PostgresItemRepository{db: db}
 }
 
-func (r *ItemRepository) Create(item *Item) error {
+func (r *PostgresItemRepository) Create(item *Item) error {
 	query := `
 		INSERT INTO items (id, original_name, stored_name, file_path, file_size, mime_type, created_at, updated_at)
 		VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
@@ -42,7 +51,7 @@ func (r *ItemRepository) Create(item *Item) error {
 	return nil
 }
 
-func (r *ItemRepository) GetByID(id uuid.UUID) (*Item, error) {
+func (r *PostgresItemRepository) GetByID(id uuid.UUID) (*Item, error) {
 	query := `
 		SELECT id, original_name, stored_name, file_path, file_size, mime_type, created_at, updated_at
 		FROM items WHERE id = $1
@@ -61,7 +70,7 @@ func (r *ItemRepository) GetByID(id uuid.UUID) (*Item, error) {
 	return item, nil
 }
 
-func (r *ItemRepository) List() ([]*Item, error) {
+func (r *PostgresItemRepository) List() ([]*Item, error) {
 	query := `
 		SELECT id, original_name, stored_name, file_path, file_size, mime_type, created_at, updated_at
 		FROM items ORDER BY created_at DESC
