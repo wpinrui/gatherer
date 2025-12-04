@@ -51,16 +51,19 @@ export function FileUpload() {
         throw new Error('Server returned empty response. Is the backend running?');
       }
 
-      let data: UploadResponse;
+      let parsed: unknown;
       try {
-        data = JSON.parse(text);
+        parsed = JSON.parse(text);
       } catch {
         throw new Error('Invalid response from server');
       }
 
       if (!response.ok) {
-        throw new Error((data as { error?: string }).error || 'Upload failed');
+        const errorData = parsed as { error?: string };
+        throw new Error(errorData.error || 'Upload failed');
       }
+
+      const data = parsed as UploadResponse;
       setStatus('success');
       setMessage(`Uploaded: ${data.filename} (${formatBytes(data.size)})`);
 
@@ -107,9 +110,9 @@ export function FileUpload() {
 }
 
 function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 B';
+  if (bytes <= 0) return '0 B';
   const k = 1024;
   const sizes = ['B', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  const i = Math.min(Math.floor(Math.log(bytes) / Math.log(k)), sizes.length - 1);
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
 }
